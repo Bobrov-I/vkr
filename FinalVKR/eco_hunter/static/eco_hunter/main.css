@@ -1,0 +1,98 @@
+:root {
+    --bg-color: #98FB98;
+    --text-color: #3D3D3D;
+    --accent-color: #3BB727;
+    --contrast-color: #D5FACF;
+    --header-color: #FFFFFF;
+    --telegram-color: #0088CC;
+    --vk-color: #4C75A3;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+html, body, .wrapper .main-row {
+    height: 100%;
+}
+
+.row {
+    --bs-gutter-x: 0;
+}
+body {
+    min-width: 320px;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.maintainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main.main{
+    flex: 1 1 auto;
+}
+
+.btn-secondary {
+    border-radius: 20px !important;
+    --bs-btn-bg: var(--accent-color);
+    border: 0;
+    
+}
+.heder-content{
+    background-color: var(--header-color);
+    
+}
+
+header.header {
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+}
+
+.headef-top{
+    height: 10vh;
+}
+.header-botom{
+    height: 20vh;
+    color: var(--header-color);
+}
+
+ul.h-buttons {
+    list-style: none;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 0%;
+}
+
+
+ul.h-buttons li {
+    margin-right: 10px;
+}
+
+li.telegram-button a{
+    color: var(--telegram-color);
+}
+li.telegram-button a :hover{
+    color: var(--text-color);
+}
+li.vk-button a{
+    color: var(--vk-color);
+}
+li.vk-button a :hover{
+    color: var(--text-color);
+}
+
+.board {
+    margin: 0%;
+
+}
+
+.logo {
+    max-width: 30%;
+    padding-left: 10px ;
+}
