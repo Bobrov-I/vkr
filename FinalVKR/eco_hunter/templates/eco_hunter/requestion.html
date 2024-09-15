@@ -1,0 +1,76 @@
+{% extends "eco_hunter/base.html" %}
+{% block title %} ЭкоHunter-Сообщить о свалке {% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="requestionContent">
+        <div class="requestion">
+            <h2 class="requestionExample__title">Заявка </h2>
+            <form method="POST" enctype="multipart/form-data" id="reqestion">
+                {% csrf_token %}
+                <label for="name" class="requestion__label">Ваше имя:</label>
+                <input type="text" id="name" name="name" class="suggestions-input requestion__userInput" placeholder="Как к вам обращаться?">
+                <span id="name-error" class="error-message"></span>
+                
+                <label for="phone" class="requestion__label">Телефон:</label>
+                <input type="text" id="phone" name="phone" class="suggestions-input requestion__userInput" placeholder="89997775533">
+                <span id="phone-error" class="error-message"></span>
+                
+                <label for="email" class="requestion__label">Email:</label>
+                <input type="text" id="email" name="email" class="suggestions-input requestion__userInput" placeholder="example@mymail.com">
+                <span id="email-error" class="error-message"></span>
+                
+                <label for="address" class="requestion__label">Адрес свалки:</label>
+                <input type="text" id="address" name="address" class="requestion__userInput address" placeholder="Ближайший адрес">
+                <span id="address-error" class="error-message"></span>
+
+                <label for="description" class="requestion__label">Описание места:</label>
+                <textarea type="text" id="description" name="description" class="suggestions-input requestion__userInput" rows="3" placeholder="Опишите место, как его найти"></textarea>
+                <span id="description-error" class="error-message"></span>
+                
+                <input type="hidden" name="latitude" id="latitude" />
+                <input type="hidden" name="longitude" id="longitude" />
+
+                <label for="photos" class="requestion__label">Выберите фотографии:</label>
+                <input type="file" id="photos" name="photos" multiple class="suggestions-input requestion__userInput">
+                <span id="photos-error" class="error-message"></span>
+
+                <input type="submit" value="Отправить заявку" class="header__button">
+            </form>
+        </div>
+        <div class="requestionExample">
+            <h2 class="requestionExample__title"> Пример заполнения заявки </h2>
+            <ul class="requestionExample__ul">
+                <li class="requestionExample__item"><b>Имя: Иван</b> - имя необходимо для обратной связи с пользователем, 
+                    как к нему стоит обращаться в случае если у администрации сайта возникнут дополнительные вопросы 
+                    по поводу заявки.</li>
+                <li class="requestionExample__item"><b>Телефон: 89995280911</b> - контактный номер нужен для связи с пользователем, 
+                    в случае возникновения вопросов по поводу места и актуальности отправленной заявки.</li>
+                <li class="requestionExample__item"><b>Email: ivan7732@mymail.ru</b> - также как и контакный номер, email 
+                    необходим в случае уточнения информации по заявке</li>
+                <li class="requestionExample__item"><b>Адрес свалки: Улица Урицкого, д 49, к1.</b> - необходимо указать ближайший 
+                    адрес к месту скопления мусора, эта информация необходима для быстрого поиска. 
+                    Если вы обнаружили свалку в пригороде или в лесном массиве, пожалуйста, укажите 
+                    название ближайшего поселка или округа. Чем ближе указанный адрес будет к месту свалки, тем 
+                    проще ее будет найти.</li>
+                <li class="requestionExample__item"><b>Описание места: 7 километр Архангельского шоссе, поворот направо,
+                    200 метров по грунтовой дороге, поворот налево, 10 метров в лес. Десять больших мешков с бытовыми отходами.</b>
+                     - Описание необходимо для уточнения более подробного места свалки, чем оно точнее тем быстрее и проще будет её обнаружить. </li>
+                <li class="requestionExample__item"><b>Фото:<b> Прикрепленные фотографии дожны содержать <b>ТОЛЬКО</b> 
+                    фотографии самой свалки!!! Важно фотографировать так, чтобы свалка попала в кадр целиком, насколько это возможно.
+                    Если мусор - это разбросанная по оврагам фракция (пакеты, бутылки, покрышки), то следует сделать как можно больше фотографий,
+                    содержащих данную фракцию.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/js/jquery.suggestions.min.js"></script>
+
+<script src="{% static 'js/hint.js' %}"></script>
+<script src="{% static 'js/validation.js' %}"></script>
+
+{% endblock content %}
