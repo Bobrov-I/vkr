@@ -1,0 +1,21 @@
+{% extends "eco_hunter/base.html" %}
+{% block title %} ЭкоHunter-Архив {% endblock %}
+{% block content %}
+<div class="container">
+    {% for r in req %}
+    <div class="requestsList">
+        <div class="requestsList__image">
+            <img src="{{ r.img.url }}" alt="{{ r.name }}">
+        </div>
+        <div class="requestsList__details">
+            <h2>{{ r.address }}</h2>
+            <p>{{ r.pred_status }}</p>
+            <p>Датa: {{ r.date_time }}</p>
+            <a href="{% url 'requestion_detail' r.id %}" class="requestsList__btn">Подробнее...</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+
