@@ -1,0 +1,77 @@
+{% extends "eco_hunter/base.html" %}
+{% block title %} ЭкоHunter-Главная {% endblock %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="homePage">
+            <div class="homePage__text">
+                <h1 class="homePage__title descTitle">Что такое ЭкоHunter29? - </h1>
+                <p class="homePage__desc">Это экологическая площадка. Здесь ты можешь посмотреть актуальную информацию о мусоре в городе, написать заявку на уборку и принять участие в проходящих мероприятиях.</p>
+                <h1 class="homePage__title descTitle">Как отправить заявку? - </h1>
+                <p class="homePage__desc">Для того чтобы отправить заявку необходимо заполнить форму на вкладке "Отправить заявку", следуя инструкции.</p>
+                <h1 class="homePage__title descTitle">Как принять участие в мероприятии? - </h1>
+                <p class="homePage__desc">Следи за актуальными новостями на странице проекта!</p>
+            </div>
+            <div class="homePage__image">
+                <img class="homePage__img"src="{% static 'eco_hunter/collage.png' %}"></img>
+            </div>
+        </div>
+        <div class="homeIvents">
+            <h1 class="homeMap__title">Предстоящие мероприятия</h1>
+            <div id="carouselExampleIndicators" class="carousel slide tasks_carousel" data-bs-ride="carousel">
+                <ol class="carousel-indicators main_indicators">
+                    {% for task in tasks %}
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for task in tasks %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %} main-carousel-item">
+                        <div class="item-container">
+                            <a href="{{ task.organisation.organisation_link }}">
+                                <div class="row task-content">
+                                    <div class="col-md-8 task-desk">
+                                        <h5 class="task-title">{{task.title}}</h5>
+                                        <p class="task-text text-secondary mb-3 overflow-x-hidden">{{task.text}}</p>
+                                        <p class="task-text text-secondary mb-3">
+                                            {{task.requisition_task.address}}<br>
+                                            Дата: {{task.holding_date}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 task-logo">
+                                        {% if task.organisation.logo_organisation %}
+                                        <img src="{{ task.organisation.logo_organisation.url }}" class="img-fluid">
+                                        {% endif %}
+                                        <h6 class="task-org">{{task.organisation.organisation_name }}</h6>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>                  
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Следующий</span>
+                </button>
+            </div>
+        </div>
+        <div class="homeMap">
+            <h1 class="homeMap__title">Карта активных заявок</h1>       
+            <div class="homeMap__map">
+                <ul class="homeMap__statsList">
+                    <li class="statsList__item">Количество заявок:&nbsp;&nbsp;&nbsp;<span>{{ len_req }}</span></li>
+                    <li class="statsList__item">Проведено мероприятий:&nbsp;&nbsp;&nbsp;<span>{{ len_tasks }}</span></li>
+                    <li class="statsList__item">Участвующих организаций:&nbsp;&nbsp;&nbsp;<span>{{ len_orgs }}</span></li>
+                </ul>  
+                <div class="homeMap__image">{{ map|safe }}</div>
+            </div>
+        </div>   
+        <div class="homeMetrics">             
+        </div>
+    </div>
+{% endblock content %}
